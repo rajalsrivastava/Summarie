@@ -2,6 +2,9 @@
 
 import { z } from "zod";
 import UploadFormInput from "./upload-form-input";
+import { useUploadThing } from "@/utils/uploadthing";
+import { toast } from "sonner";
+//schema with zod
 
 const schema = z.object({
   file: z
@@ -17,23 +20,58 @@ const schema = z.object({
 });
 
 export default function UploadForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { startUpload, routeConfig } = useUploadThing("pdfUploader", {
+    onClientUploadComplete: () => {
+      console.log("uploaded successfully!");
+    },
+    onUploadError: (err) => {
+      console.log("error occurred while uploading", err);
+      toast(" Error occurred while uploading", {
+        description: err.message,
+      });
+    },
+    onUploadBegin: ({ file }) => {
+      console.log("upload has begun for", file);
+    },
+  });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
     const formData = new FormData(e.currentTarget);
     const file = formData.get("file") as File;
 
     //validating the fields
     const validatedFields = schema.safeParse({ file });
+    console.log(validatedFields);
     if (!validatedFields.success) {
-      console.log(
-        validatedFields.error.flatten().fieldErrors.file?.[0] ?? "Invalid File"
-      );
+      toast("❌ Something went wrong", {
+        description:
+          validatedFields.error.flatten().fieldErrors.file?.[0] ??
+          "Invalid file.",
+        style: { color: "red" },
+      });
+
       return;
     }
 
-    //schema with zod
+    toast("📄 Uploading PDF...", {
+      description: "We are uploading your PDF! ",
+    });
+
     //upload the file to the uploadthing
+
+    const resp = await startUpload([file]);
+    if (!resp) {
+      toast("Something went wrong", {
+        description: "Please use a different file",
+        style: { color: "red" },
+      });
+      return;
+    }
+
+    toast("⏳ Processing PDF...", {
+      description: "Hang tight! Our AI is reading through your document! ✨",
+    });
     //parse the pdf using lang chain
     //summarize the pdf using AI
     //save the summary to the database
