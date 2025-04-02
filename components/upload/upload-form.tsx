@@ -5,6 +5,7 @@ import UploadFormInput from "./upload-form-input";
 import { useUploadThing } from "@/utils/uploadthing";
 import { toast } from "sonner";
 import { generatePdfSummary } from "@/actions/upload-actions";
+import { useRef, useState } from "react";
 //schema with zod
 
 const schema = z.object({
@@ -21,6 +22,9 @@ const schema = z.object({
 });
 
 export default function UploadForm() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const { startUpload, routeConfig } = useUploadThing("pdfUploader", {
     onClientUploadComplete: () => {
       console.log("uploaded successfully!");
@@ -38,54 +42,80 @@ export default function UploadForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const file = formData.get("file") as File;
+    try {
+      setIsLoading(true);
 
-    //validating the fields
-    const validatedFields = schema.safeParse({ file });
-    console.log(validatedFields);
-    if (!validatedFields.success) {
-      toast("❌ Something went wrong", {
-        description:
-          validatedFields.error.flatten().fieldErrors.file?.[0] ??
-          "Invalid file.",
-        style: { color: "red" },
+      const formData = new FormData(e.currentTarget);
+      const file = formData.get("file") as File;
+
+      //validating the fields
+      const validatedFields = schema.safeParse({ file });
+      console.log(validatedFields);
+      if (!validatedFields.success) {
+        toast("❌ Something went wrong", {
+          description:
+            validatedFields.error.flatten().fieldErrors.file?.[0] ??
+            "Invalid file.",
+          style: { color: "red" },
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      toast("📄 Uploading PDF...", {
+        description: "We are uploading your PDF! ",
       });
 
-      return;
-    }
+      //upload the file to the uploadthing
 
-    toast("📄 Uploading PDF...", {
-      description: "We are uploading your PDF! ",
-    });
+      const resp = await startUpload([file]);
+      if (!resp) {
+        toast("Something went wrong", {
+          description: "Please use a different file",
+          style: { color: "red" },
+        });
+        setIsLoading(false);
+        return;
+      }
 
-    //upload the file to the uploadthing
-
-    const resp = await startUpload([file]);
-    if (!resp) {
-      toast("Something went wrong", {
-        description: "Please use a different file",
-        style: { color: "red" },
+      toast("⏳ Processing PDF...", {
+        description: "Hang tight! Our AI is reading through your document! ✨",
       });
-      return;
+
+      //parse the pdf using lang chain
+      const result = await generatePdfSummary(resp);
+
+      const { data = null, message = null } = result || {};
+
+      if (data) {
+        toast("💾 Saving PDF...", {
+          description: "Hang tight! We are saving your summary! ✨",
+        });
+
+        formRef.current?.reset();
+
+        if (data.summary) {
+          // save the summary to the database
+        }
+      }
+
+      //summarize the pdf using AI
+      //redirect to the [id] summary page
+    } catch (error) {
+      setIsLoading(false);
+      console.error("error occurred", error);
+      formRef.current?.reset();
     }
-
-    toast("⏳ Processing PDF...", {
-      description: "Hang tight! Our AI is reading through your document! ✨",
-    });
-
-    //parse the pdf using lang chain
-    const summary = await generatePdfSummary(resp);
-    console.log({ summary });
-    //summarize the pdf using AI
-    //save the summary to the database
-    //redirect to the [id] summary page
   };
 
   return (
     <div>
       <div className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
-        <UploadFormInput onSubmit={handleSubmit} />
+        <UploadFormInput
+          isLoading={isLoading}
+          ref={formRef}
+          onSubmit={handleSubmit}
+        />
       </div>
     </div>
   );
