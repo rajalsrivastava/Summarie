@@ -23,7 +23,7 @@ export const SUMMARY_SYSTEM_PROMPT = `You are a social media content expert who 
 
 # Pro Tips
 •⭐First practical recommendation
-• 💎Second valuable insight
+•💎Second valuable insight
 •🌟Third actionable advice
 
 # Key Terms to Know
