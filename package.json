@@ -27,6 +27,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sonner": "^2.0.3",
+    "stripe": "^18.0.0",
     "summarie": "file:",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
