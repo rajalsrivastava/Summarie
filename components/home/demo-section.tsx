@@ -1,4 +1,42 @@
 import { Pizza } from "lucide-react";
+import { MotionDiv, MotionH3 } from "../common/motion-wrapper";
+import { SummaryViewer } from "../summaries/summary-viewer";
+
+const DEMO_SUMMARY = `
+🌍 AI Just Took Over the Music Charts! 🎶🤖
+Quick Overview
+•🎯An AI-generated song just hit #1 on global charts—welcome to the future of music.
+•📌This marks a huge turning point for AI in creative industries.
+
+# Document Details
+•📄Type: Viral News Summary
+•👥For: Music lovers, tech enthusiasts, creators, and trend-watchers
+
+#Key Highlights
+•🚀An AI-generated track created by a solo developer topped Spotify Global Top 50
+•⭐The AI was trained on 10,000+ pop hits to mimic human emotion and style
+•💫Industry leaders like Universal and Sony are now exploring AI collabs
+
+# Why It Matters
+•💡This breakthrough blurs the line between human creativity and machine intelligence, pushing us into a new era where AI doesn’t just support art—it creates it. The implications for artists, producers, and listeners are massive.
+
+#Main Points
+•🎯Main insight or finding: AI can now create commercially successful music indistinguishable from human-made songs
+•💪Key strength or advantage: Rapid production, zero writer’s block, scalable creativity
+•🔥Important outcome or result: Record labels are racing to invest in AI-music tools and partnerships
+
+# Pro Tips
+•⭐First practical recommendation: Artists should start experimenting with AI tools to stay ahead
+•💎Second valuable insight: Use AI as a collaborator, not a competitor—it’s a creative amplifier
+•🌟Third actionable advice: Learn prompt engineering to direct AI’s musical output more precisely
+
+#Key Terms to Know
+•📚AI Music Generation: Using artificial intelligence to compose and produce songs
+•🔍Neural Networks: Algorithms that mimic the brain’s structure to understand patterns—in this case, musical ones
+
+#Bottom Line
+•💫AI isn’t coming for your playlist—it’s already in it. Stay curious, stay creative.
+`;
 
 export default function DemoSection() {
   return (
@@ -18,24 +56,36 @@ export default function DemoSection() {
           ></div>
         </div>
 
-        <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col items-center text-center space-y-4">
           <div className="inline-flex items-center justify-center p-2 rounded-2xl bg-gray-100/80 background-blur-xs border border-gray-500/20 mb-4">
             <Pizza className="w-6 h-6 text-rose-500" />
           </div>
           <div className="text-center mb-16">
-            <h3 className="font-bold text-3xl max-w-2xl mx-auto px-4 sm:px-6">
+            <MotionH3
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="font-bold text-3xl max-w-2xl mx-auto px-4 sm:px-6"
+            >
               Watch how Summarie transforms{" "}
               <span className="bg-linear-to-r from-rose-500 to-rose-700 bg-clip-text text-transparent ">
                 this Next.js course PDF
               </span>{" "}
               into an easy-to-read summary!
-            </h3>
-          </div>
-          
-          <div className="flex justify-center items-center px-2 sm:px-4 lg:px-6">
-            {/* Summary Viewer */}
+            </MotionH3>
           </div>
         </div>
+
+          <div className="flex justify-center items-center px-2 sm:px-4 lg:px-6">
+            {/* Summary Viewer */}
+            <MotionDiv
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <SummaryViewer summary={DEMO_SUMMARY} />
+            </MotionDiv>
+          </div>
       </div>
     </section>
   );

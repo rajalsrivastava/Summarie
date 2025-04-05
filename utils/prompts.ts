@@ -11,14 +11,14 @@ export const SUMMARY_SYSTEM_PROMPT = `You are a social media content expert who 
 # Key Highlights
 •🚀First Key Point
 •⭐ Second Key Point
-•💫hird Key Point
+•💫Third Key Point
 
 # Why It Matters
 •💡A short, impactful paragraph explaining impact
 
 # Main Points
 •🎯Main insight or finding
-•💪ey strength or advantage
+•💪Key strength or advantage
 •🔥Important outcome or result
 
 # Pro Tips
