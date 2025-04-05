@@ -8,13 +8,11 @@ import { FileText } from "lucide-react";
 import { notFound } from "next/navigation";
 
 interface SummaryPageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default async function SummaryPage({ params }: SummaryPageProps) {
-  const { id } = params;
+  const { id } = await params;
 
   const summary = await getSummaryById(id);
 

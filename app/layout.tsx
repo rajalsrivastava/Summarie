@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "Summarie - AI-powered PDF Summarization",
   description:
     "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
