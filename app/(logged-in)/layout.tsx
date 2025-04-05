@@ -17,7 +17,7 @@ export default async function LoggedInLayout({
 
     const hasActiveSubscription = await hasActivePlan(user.emailAddresses[0].emailAddress);
 
-    if(!hasActiveSubscription){
+    if(hasActiveSubscription){
      return <UpgradeRequired/>
     }
   return <>{children}</>;
