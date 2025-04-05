@@ -10,6 +10,7 @@ import {
 } from "@/actions/upload-actions";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import  LoadingSkeleton  from "./loading-skeleton";
 //schema with zod
 
 const schema = z.object({
@@ -160,6 +161,8 @@ export default function UploadForm() {
               </span>
             </div>
           </div>
+
+          <LoadingSkeleton/>
         </>
       )}
     </div>

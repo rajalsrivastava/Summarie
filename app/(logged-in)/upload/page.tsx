@@ -18,9 +18,9 @@ export default async function UploadPage() {
   const userId = user.id;
   const { hasReachedLimit } = await hasReachedUploadLimit(userId);
 
-  if (hasReachedLimit) {
-    redirect("/dashboard");
-  }
+  // if (hasReachedLimit) {
+  //   redirect("/dashboard");
+  // }
 
   return (
     <section className="min-h-screen">

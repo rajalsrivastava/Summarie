@@ -100,6 +100,8 @@ export default async function DashboardPage() {
             </MotionDiv>
           )}
 
+          
+
           {summaries.length === 0 ? (
             <EmptySummaryState />
           ) : (
