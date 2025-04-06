@@ -1,4 +1,3 @@
-import { isDev } from "./helpers";
 
 export const pricingPlans = [
   {
@@ -11,8 +10,8 @@ export const pricingPlans = [
       "Email support",
     ],
     id: "basic",
-    paymentLink: isDev ? "https://buy.stripe.com/test_3cscMQcF8548gz6cMM" : "",
-    priceId: isDev ? "price_1RA9yVCTlpmJdURCo5eDA5T5" : "",
+    paymentLink:  "https://buy.stripe.com/test_3cscMQcF8548gz6cMM",
+    priceId:  "price_1RA9yVCTlpmJdURCo5eDA5T5",
   },
   {
     name: "Pro",
@@ -25,8 +24,8 @@ export const pricingPlans = [
       "Markdown Export",
     ],
     id: "pro",
-    paymentLink: isDev ? "https://buy.stripe.com/test_28o7sw7kO7cg6Yw7st" : "",
-    priceId: isDev ? "price_1RA9yVCTlpmJdURCk8Oi1pwO" : "",
+    paymentLink: "https://buy.stripe.com/test_28o7sw7kO7cg6Yw7st",
+    priceId:  "price_1RA9yVCTlpmJdURCk8Oi1pwO",
   },
 ];
 
