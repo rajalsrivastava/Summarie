@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📄 Summarie – Transform PDFs into Beautiful, AI-Powered Summaries
 
-## Getting Started
+Summarie is a powerful web application that turns your lengthy PDF documents into concise, engaging, and emoji-rich summaries – like a visual reel of your content. Built with cutting-edge technologies including **Next.js 15**, **Gemini AI**, **Clerk**, **Langchain**, and more.
 
-First, run the development server:
+![Project Image]()
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚡ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🔧 Core Technologies:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🚀**Next.js 15 App Router** – for server-side rendering, routing, and API endpoints using Server Components.
+- ❄️**React** – for building dynamic and interactive user interfaces.
+- 🔑**Clerk** – for secure, modern authentication (Passkeys, GitHub, Google).
+- 🤖**Gemini AI** – for powerful AI-driven summarization with contextual understanding.
+- 🧠**Langchain** – for parsing PDFs, extracting text, and chunking documents efficiently.
+- 🎨**ShadCN UI** – for clean, accessible, and customizable UI components.
+- 💾**NeonDB (PostgreSQL)** – for serverless, scalable database storage of user data and summaries.
+- 🖨️**UploadThing** – for secure PDF file uploads (up to 32MB).
+- 💰**Stripe** – for subscription plans, billing, and payment handling.
+- 📜**TypeScript** – for type safety and better development experience.
+- 💅**Tailwind CSS 4** – for modern, utility-first styling.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+### ⚙️ Application Features:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 📚 Clear, structured, AI-powered summaries with key points.
+- 🎥 Interactive summary viewer with beautiful styling and progress tracking.
+- 🔐 Secure file uploads and processing.
+- 🧑‍💼 Protected routes and authenticated dashboard.
+- 💳 Flexible pricing plans (Basic & Pro) with Stripe.
+- 📩 Webhook handling for Stripe events.
+- 📂 User dashboard to view/manage all summaries.
+- 📱 Fully responsive design (mobile + desktop).
+- 🚀 Real-time updates and path revalidation.
+- 🔔 Toast notifications for uploads, processing, and errors.
+- 🧠 SEO-friendly metadata generation for summaries.
+- ⚡ Production-ready, optimized for speed and UX.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 Getting Started
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To run this project locally:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Fork this repository**
+2. **Clone your fork**
+   ```bash
+   git clone https://github.com/your-username/Summarie.git
+   cd Summarie
+3. Create the required credentials:
+    - Gemini API key
+    - Clerk authentication
+    - UploadThing configuration
+    - Stripe payment setup
+    - NeonDB database connection
+4. Install dependencied with `npm install`
+5. Run the development server with `npm run dev`
+
+---
+
+## 🙏 Acknowledgements
+
+- [Clerk](https://clerk.com/) for authentication
+- [GeminiAI](https://gemini.google.com/app) for gemini api
+- [Langchain](https://www.langchain.com/) for document processing
+- [ShadCN](https://ui.shadcn.com/) for components
+
+---
+
+## 📜 License
+This project is licensed under the MIT License.
+
+---
+
+## 🙌 Contributing
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+---
+
+## 📧 Contact
+For questions or suggestions, reach out to **[Rajal Srivastava](https://github.com/rajalsrivastava)**.
+
+- **LinkedIn:** [Rajal Srivastava](https://www.linkedin.com/in/rajalsrivastava)
+- **Email:** [rajal10srivastava@gmail.com](mailto:rajal10srivastava@gmail.com)
+- **Twitter:** [@rajalsrivastava](https://twitter.com/rajalsrivastava)
