@@ -54,6 +54,10 @@ async function createOrUpdateUser({
     const user = await sql`SELECT * FROM users WHERE email = ${email}`;
     if (user.length === 0) {
       await sql`INSERT INTO users (email, full_name, customer_id,price_id, status) VALUES (${email}, ${full_name}, ${customer_id}, ${priceId}, ${status})`;
+    } else {
+      await sql`UPDATE users
+                SET full_name = ${full_name}, customer_id = ${customer_id}, price_id = ${priceId}, status = ${status}
+                WHERE email = ${email}`;
     }
   } catch (error) {
     console.log("Error creating or updating user", error);
